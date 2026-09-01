@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+        <!-- Calculator -->
+
+        <div class="calculator">
+
+            <!-- Header -->
+
+            <div class="calculator-header">
+
+                <h1>Calculator</h1>
+
+                <button
+                    id="themeButton"
+                    class="theme-button"
+                    onclick="toggleTheme()">
+                    🌙
+                </button>
+
+            </div>
+
+
+            <!-- Display -->
+
+            <div class="display-container">
+
+                <div
+                    id="previousDisplay"
+                    class="previous-display">
+                </div>
+
+                <div
+                    id="display"
+                    class="display">
+                    0
+                </div>
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="buttons">
+
+                <!-- Row 1 -->
+
+                <button
+                    class="function-button"
+                    onclick="press('AC')">
+                    AC
+                </button>
+
+                <button
+                    class="function-button"
+                    onclick="press('backspace')">
+                    ⌫
+                </button>
+
+                <button
+                    class="function-button"
+                    onclick="press('%')">
+                    %
+                </button>
+
+                <button
+                    class="operator-button"
+                    onclick="press('/')">
+                    ÷
+                </button>
+
+
+                <!-- Row 2 -->
+
+                <button onclick="press('7')">7</button>
+
+                <button onclick="press('8')">8</button>
+
+                <button onclick="press('9')">9</button>
+
+                <button
+                    class="operator-button"
+                    onclick="press('*')">
+                    ×
+                </button>
+
+
+                <!-- Row 3 -->
+
+                <button onclick="press('4')">4</button>
+
+                <button onclick="press('5')">5</button>
+
+                <button onclick="press('6')">6</button>
+
+                <button
+                    class="operator-button"
+                    onclick="press('-')">
+                    −
+                </button>
+
+
+                <!-- Row 4 -->
+
+                <button onclick="press('1')">1</button>
+
+                <button onclick="press('2')">2</button>
+
+                <button onclick="press('3')">3</button>
+
+                <button
+                    class="operator-button"
+                    onclick="press('+')">
+                    +
+                </button>
+
+
+                <!-- Row 5 -->
+
+                <button
+                    class="zero-button"
+                    onclick="press('0')">
+                    0
+                </button>
+
+                <button onclick="press('.')">
+                    .
+                </button>
+
+                <button
+                    class="equals-button"
+                    onclick="press('=')">
+                    =
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- History -->
+
+        <div class="history">
+
+            <div class="history-header">
+
+                <h2>History</h2>
+
+                <button
+                    class="clear-history-button"
+                    onclick="clearHistory()">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <div
+                id="historyList"
+                class="history-list">
+
+                <p class="empty-history">
+                    No calculations yet
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

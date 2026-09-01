@@ -1,0 +1,368 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+    --background: #f2f2f2;
+    --calculator: #ffffff;
+    --display: #eeeeee;
+    --button: #dddddd;
+    --button-hover: #cccccc;
+    --text: #111111;
+    --operator: #ff9500;
+    --operator-hover: #e68600;
+    --function: #aaaaaa;
+    --history: #ffffff;
+    --border: #dddddd;
+}
+
+
+body.dark {
+    --background: #121212;
+    --calculator: #1e1e1e;
+    --display: #111111;
+    --button: #333333;
+    --button-hover: #444444;
+    --text: #ffffff;
+    --function: #555555;
+    --history: #1e1e1e;
+    --border: #333333;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family: Arial, sans-serif;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px;
+
+    transition: 0.3s;
+}
+
+
+.app {
+    width: 100%;
+
+    max-width: 750px;
+
+    display: grid;
+
+    grid-template-columns: 350px 1fr;
+
+    gap: 30px;
+
+    align-items: start;
+}
+
+
+.calculator {
+    background: var(--calculator);
+
+    padding: 20px;
+
+    border-radius: 25px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+.calculator-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.calculator-header h1 {
+    font-size: 24px;
+}
+
+
+.theme-button {
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: var(--button);
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+
+.display-container {
+    background: var(--display);
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    margin-bottom: 20px;
+
+    min-height: 100px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    align-items: flex-end;
+
+    overflow: hidden;
+}
+
+
+.previous-display {
+    min-height: 25px;
+
+    font-size: 16px;
+
+    opacity: 0.6;
+
+    word-break: break-all;
+}
+
+
+.display {
+    width: 100%;
+
+    text-align: right;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    word-break: break-all;
+}
+
+
+.buttons {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+
+button {
+    border: none;
+
+    height: 60px;
+
+    border-radius: 15px;
+
+    background: var(--button);
+
+    color: var(--text);
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: 0.1s;
+}
+
+
+button:hover {
+    background: var(--button-hover);
+}
+
+
+button:active {
+    transform: scale(0.94);
+}
+
+
+.function-button {
+    background: var(--function);
+}
+
+
+.operator-button {
+    background: var(--operator);
+
+    color: white;
+}
+
+
+.operator-button:hover {
+    background: var(--operator-hover);
+}
+
+
+.equals-button {
+    background: var(--operator);
+
+    color: white;
+
+    grid-column: span 1;
+}
+
+
+.equals-button:hover {
+    background: var(--operator-hover);
+}
+
+
+.zero-button {
+    grid-column: span 2;
+}
+
+
+.history {
+    background: var(--history);
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    min-height: 300px;
+}
+
+
+.history-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.history-header h2 {
+    font-size: 22px;
+}
+
+
+.clear-history-button {
+    height: auto;
+
+    padding: 8px 12px;
+
+    font-size: 14px;
+
+    border-radius: 8px;
+}
+
+
+.history-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.history-item {
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: var(--button);
+
+    cursor: pointer;
+}
+
+
+.history-item:hover {
+    background: var(--button-hover);
+}
+
+
+.history-expression {
+    font-size: 14px;
+
+    opacity: 0.7;
+}
+
+
+.history-result {
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-top: 4px;
+}
+
+
+.empty-history {
+    opacity: 0.5;
+
+    text-align: center;
+
+    margin-top: 50px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+
+    .app {
+        grid-template-columns: 1fr;
+
+        max-width: 400px;
+    }
+
+
+    .history {
+        min-height: 200px;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .calculator {
+        padding: 12px;
+    }
+
+
+    button {
+        height: 55px;
+
+        font-size: 19px;
+    }
+
+
+    .display {
+        font-size: 32px;
+    }
+
+}
