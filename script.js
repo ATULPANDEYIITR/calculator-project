@@ -761,3 +761,63 @@ loadHistory();
 loadTheme();
 
 updateDisplay();
+// ============================================
+// ADVANCED CALCULATOR MODE
+// ============================================
+
+function toggleAdvancedMode() {
+
+    const panel =
+        document.getElementById("advancedPanel");
+
+    if (panel.style.display === "none") {
+
+        panel.style.display = "block";
+
+    } else {
+
+        panel.style.display = "none";
+    }
+}
+
+
+// ============================================
+// RUN ADVANCED CALCULATION
+// ============================================
+
+function runAdvancedCalculation() {
+
+    const input =
+        document.getElementById("advancedInput");
+
+    const expression =
+        input.value.trim();
+
+    if (expression === "") {
+
+        display.textContent =
+            "Enter a calculation";
+
+        return;
+    }
+
+    try {
+
+        const result =
+            calculateExpression(expression);
+
+        display.textContent =
+            formatNumber(result);
+
+        previousDisplay.textContent =
+            expression + " =";
+
+    } catch (error) {
+
+        display.textContent =
+            "Error";
+
+        previousDisplay.textContent =
+            error.message;
+    }
+}

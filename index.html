@@ -25,6 +25,11 @@
             <!-- Header -->
 
             <div class="calculator-header">
+                <button
+    class="advanced-mode-button"
+    onclick="toggleAdvancedMode()">
+    Advanced
+</button>
 
                 <h1>Calculator</h1>
 
@@ -39,7 +44,23 @@
 
 
             <!-- Display -->
+<div
+    id="advancedPanel"
+    class="advanced-panel"
+    style="display: none;">
 
+    <input
+        id="advancedInput"
+        type="text"
+        placeholder="Example: (2+3)*4"
+        autocomplete="off">
+
+    <button
+        onclick="runAdvancedCalculation()">
+        Calculate
+    </button>
+
+</div>
             <div class="display-container">
 
                 <div
