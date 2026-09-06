@@ -5,211 +5,3351 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Calculator</title>
+    <title>
+        Universal Calculator & Computational Workspace
+    </title>
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="description"
+        content="Universal Calculator with mathematics, statistics, physics, chemistry, finance, business, engineering and programming tools."
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Math.js -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjs@14.0.1/lib/browser/math.js">
+    </script>
 
 </head>
 
 
 <body>
 
-    <div class="app">
+<div class="app">
 
-        <!-- Calculator -->
 
-        <div class="calculator">
+    <!-- =========================================
+         TOP BAR
+    ========================================== -->
 
-            <!-- Header -->
+    <header class="topbar">
 
-            <div class="calculator-header">
-                <button
-    class="advanced-mode-button"
-    onclick="toggleAdvancedMode()">
-    Advanced
-</button>
+        <div class="brand">
 
-                <h1>Calculator</h1>
-
-                <button
-                    id="themeButton"
-                    class="theme-button"
-                    onclick="toggleTheme()">
-                    🌙
-                </button>
-
+            <div class="brand-icon">
+                ∑
             </div>
 
+            <div>
 
-            <!-- Display -->
-<div
-    id="advancedPanel"
-    class="advanced-panel"
-    style="display: none;">
+                <h1>
+                    Universal Calculator
+                </h1>
 
-    <input
-        id="advancedInput"
-        type="text"
-        placeholder="Example: (2+3)*4"
-        autocomplete="off">
-
-    <button
-        onclick="runAdvancedCalculation()">
-        Calculate
-    </button>
-
-</div>
-            <div class="display-container">
-
-                <div
-                    id="previousDisplay"
-                    class="previous-display">
-                </div>
-
-                <div
-                    id="display"
-                    class="display">
-                    0
-                </div>
-
-            </div>
-
-
-            <!-- Buttons -->
-
-            <div class="buttons">
-
-                <!-- Row 1 -->
-
-                <button
-                    class="function-button"
-                    onclick="press('AC')">
-                    AC
-                </button>
-
-                <button
-                    class="function-button"
-                    onclick="press('backspace')">
-                    ⌫
-                </button>
-
-                <button
-                    class="function-button"
-                    onclick="press('%')">
-                    %
-                </button>
-
-                <button
-                    class="operator-button"
-                    onclick="press('/')">
-                    ÷
-                </button>
-
-
-                <!-- Row 2 -->
-
-                <button onclick="press('7')">7</button>
-
-                <button onclick="press('8')">8</button>
-
-                <button onclick="press('9')">9</button>
-
-                <button
-                    class="operator-button"
-                    onclick="press('*')">
-                    ×
-                </button>
-
-
-                <!-- Row 3 -->
-
-                <button onclick="press('4')">4</button>
-
-                <button onclick="press('5')">5</button>
-
-                <button onclick="press('6')">6</button>
-
-                <button
-                    class="operator-button"
-                    onclick="press('-')">
-                    −
-                </button>
-
-
-                <!-- Row 4 -->
-
-                <button onclick="press('1')">1</button>
-
-                <button onclick="press('2')">2</button>
-
-                <button onclick="press('3')">3</button>
-
-                <button
-                    class="operator-button"
-                    onclick="press('+')">
-                    +
-                </button>
-
-
-                <!-- Row 5 -->
-
-                <button
-                    class="zero-button"
-                    onclick="press('0')">
-                    0
-                </button>
-
-                <button onclick="press('.')">
-                    .
-                </button>
-
-                <button
-                    class="equals-button"
-                    onclick="press('=')">
-                    =
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- History -->
-
-        <div class="history">
-
-            <div class="history-header">
-
-                <h2>History</h2>
-
-                <button
-                    class="clear-history-button"
-                    onclick="clearHistory()">
-                    Clear
-                </button>
-
-            </div>
-
-
-            <div
-                id="historyList"
-                class="history-list">
-
-                <p class="empty-history">
-                    No calculations yet
+                <p>
+                    Computational Workspace
                 </p>
 
             </div>
 
         </div>
 
-    </div>
+
+        <div class="top-actions">
+
+            <button
+                id="angleModeButton"
+                class="small-button"
+                onclick="cycleAngleMode()"
+            >
+                DEG
+            </button>
 
 
-    <script src="script.js"></script>
+            <button
+                class="small-button"
+                onclick="undoAction()"
+                title="Undo"
+            >
+                ↶
+            </button>
+
+
+            <button
+                class="small-button"
+                onclick="redoAction()"
+                title="Redo"
+            >
+                ↷
+            </button>
+
+
+            <button
+                class="small-button"
+                onclick="toggleTheme()"
+                id="themeButton"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN NAVIGATION
+    ========================================== -->
+
+    <nav class="main-navigation">
+
+        <button
+            class="nav-button active"
+            onclick="openModule('calculator')"
+        >
+            🧮 Calculator
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('mathematics')"
+        >
+            📐 Mathematics
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('statistics')"
+        >
+            📊 Statistics
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('physics')"
+        >
+            ⚛️ Physics
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('chemistry')"
+        >
+            🧪 Chemistry
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('finance')"
+        >
+            💰 Finance
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('business')"
+        >
+            🏢 Business
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('engineering')"
+        >
+            ⚙️ Engineering
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('programmer')"
+        >
+            💻 Programmer
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('converter')"
+        >
+            🔄 Converter
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('datetime')"
+        >
+            📅 Date & Time
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('ml')"
+        >
+            🤖 Data / ML
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('workspace')"
+        >
+            📝 Workspace
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openModule('formulas')"
+        >
+            📚 Formulas
+        </button>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         CONTENT
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =====================================
+             CALCULATOR
+        ====================================== -->
+
+        <section
+            id="calculatorModule"
+            class="module active-module"
+        >
+
+            <div class="calculator-layout">
+
+
+                <div class="calculator-card">
+
+
+                    <div class="calculator-header">
+
+                        <div>
+
+                            <span class="module-label">
+                                BASIC / SCIENTIFIC
+                            </span>
+
+                            <h2>
+                                Calculator
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            class="secondary-button"
+                            onclick="clearCalculator()"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+
+                    <div class="expression-area">
+
+                        <input
+                            id="expressionInput"
+                            type="text"
+                            autocomplete="off"
+                            spellcheck="false"
+                            placeholder="Example: (2+3)^2 + sin(30)"
+                            oninput="previewExpression()"
+                            onkeydown="expressionKey(event)"
+                        >
+
+                        <div
+                            id="expressionPreview"
+                            class="expression-preview"
+                        >
+                        </div>
+
+
+                        <div
+                            id="calculatorResult"
+                            class="calculator-result"
+                        >
+                            0
+                        </div>
+
+                    </div>
+
+
+                    <div class="calculator-tools">
+
+
+                        <button onclick="insertText('(')">
+                            (
+                        </button>
+
+                        <button onclick="insertText(')')">
+                            )
+                        </button>
+
+                        <button onclick="insertText('π')">
+                            π
+                        </button>
+
+                        <button onclick="insertText('e')">
+                            e
+                        </button>
+
+                        <button onclick="insertText('phi')">
+                            φ
+                        </button>
+
+                        <button onclick="insertText('tau')">
+                            τ
+                        </button>
+
+
+                        <button onclick="insertText('sqrt(')">
+                            √
+                        </button>
+
+                        <button onclick="insertText('^')">
+                            xʸ
+                        </button>
+
+                        <button onclick="insertText('log(')">
+                            log
+                        </button>
+
+                        <button onclick="insertText('ln(')">
+                            ln
+                        </button>
+
+                        <button onclick="insertText('sin(')">
+                            sin
+                        </button>
+
+                        <button onclick="insertText('cos(')">
+                            cos
+                        </button>
+
+                        <button onclick="insertText('tan(')">
+                            tan
+                        </button>
+
+                        <button onclick="insertText('asin(')">
+                            sin⁻¹
+                        </button>
+
+                        <button onclick="insertText('acos(')">
+                            cos⁻¹
+                        </button>
+
+                        <button onclick="insertText('atan(')">
+                            tan⁻¹
+                        </button>
+
+                        <button onclick="insertText('sinh(')">
+                            sinh
+                        </button>
+
+                        <button onclick="insertText('cosh(')">
+                            cosh
+                        </button>
+
+                        <button onclick="insertText('tanh(')">
+                            tanh
+                        </button>
+
+                        <button onclick="insertText('abs(')">
+                            abs
+                        </button>
+
+                        <button onclick="insertText('floor(')">
+                            floor
+                        </button>
+
+                        <button onclick="insertText('ceil(')">
+                            ceil
+                        </button>
+
+                        <button onclick="insertText('factorial(')">
+                            n!
+                        </button>
+
+                        <button onclick="insertText('mod(')">
+                            mod
+                        </button>
+
+                    </div>
+
+
+                    <div class="calculator-keypad">
+
+
+                        <button
+                            class="danger-key"
+                            onclick="clearCalculator()"
+                        >
+                            AC
+                        </button>
+
+
+                        <button
+                            onclick="backspaceExpression()"
+                        >
+                            ⌫
+                        </button>
+
+
+                        <button onclick="insertText('%')">
+                            %
+                        </button>
+
+
+                        <button
+                            class="operator-key"
+                            onclick="insertText('/')"
+                        >
+                            ÷
+                        </button>
+
+
+                        <button onclick="insertText('7')">
+                            7
+                        </button>
+
+                        <button onclick="insertText('8')">
+                            8
+                        </button>
+
+                        <button onclick="insertText('9')">
+                            9
+                        </button>
+
+                        <button
+                            class="operator-key"
+                            onclick="insertText('*')"
+                        >
+                            ×
+                        </button>
+
+
+                        <button onclick="insertText('4')">
+                            4
+                        </button>
+
+                        <button onclick="insertText('5')">
+                            5
+                        </button>
+
+                        <button onclick="insertText('6')">
+                            6
+                        </button>
+
+                        <button
+                            class="operator-key"
+                            onclick="insertText('-')"
+                        >
+                            −
+                        </button>
+
+
+                        <button onclick="insertText('1')">
+                            1
+                        </button>
+
+                        <button onclick="insertText('2')">
+                            2
+                        </button>
+
+                        <button onclick="insertText('3')">
+                            3
+                        </button>
+
+                        <button
+                            class="operator-key"
+                            onclick="insertText('+')"
+                        >
+                            +
+                        </button>
+
+
+                        <button
+                            class="zero-key"
+                            onclick="insertText('0')"
+                        >
+                            0
+                        </button>
+
+
+                        <button onclick="insertText('.')">
+                            .
+                        </button>
+
+
+                        <button
+                            class="equals-key"
+                            onclick="calculateExpressionNow()"
+                        >
+                            =
+                        </button>
+
+                    </div>
+
+
+                    <!-- MEMORY -->
+
+                    <div class="memory-row">
+
+                        <button onclick="memoryClear()">
+                            MC
+                        </button>
+
+                        <button onclick="memoryRecall()">
+                            MR
+                        </button>
+
+                        <button onclick="memoryAdd()">
+                            M+
+                        </button>
+
+                        <button onclick="memorySubtract()">
+                            M−
+                        </button>
+
+                        <button onclick="memoryStore()">
+                            MS
+                        </button>
+
+                    </div>
+
+
+                    <!-- PRECISION -->
+
+                    <div class="precision-row">
+
+                        <label>
+                            Significant figures
+                        </label>
+
+                        <input
+                            id="precisionInput"
+                            type="number"
+                            min="1"
+                            max="15"
+                            value="10"
+                            onchange="updatePrecision()"
+                        >
+
+                        <button onclick="copyCalculatorResult()">
+                            Copy
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HISTORY -->
+
+                <aside class="history-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <span class="module-label">
+                                SAVED
+                            </span>
+
+                            <h2>
+                                History
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            class="secondary-button"
+                            onclick="clearHistory()"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="historyList"
+                        class="history-list"
+                    >
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             MATHEMATICS
+        ====================================== -->
+
+        <section
+            id="mathematicsModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <div>
+
+                    <span class="module-label">
+                        ADVANCED MATHEMATICS
+                    </span>
+
+                    <h2>
+                        Mathematics Lab
+                    </h2>
+
+                    <p>
+                        Algebra, calculus, matrices,
+                        number theory and sequences.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Expression Solver
+                    </h3>
+
+                    <input
+                        id="mathExpression"
+                        class="input"
+                        placeholder="Example: 2*x^2 + 5*x - 3"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="solveMathExpression()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="mathExpressionResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Equation Solver
+                    </h3>
+
+                    <input
+                        id="equationInput"
+                        class="input"
+                        placeholder="Example: 2*x + 5 = 17"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="solveEquation()"
+                    >
+                        Solve
+                    </button>
+
+                    <div
+                        id="equationResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Quadratic Equation
+                    </h3>
+
+                    <div class="three-inputs">
+
+                        <input
+                            id="quadA"
+                            class="input"
+                            placeholder="a"
+                        >
+
+                        <input
+                            id="quadB"
+                            class="input"
+                            placeholder="b"
+                        >
+
+                        <input
+                            id="quadC"
+                            class="input"
+                            placeholder="c"
+                        >
+
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        onclick="solveQuadratic()"
+                    >
+                        Solve
+                    </button>
+
+                    <div
+                        id="quadraticResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        AP / GP
+                    </h3>
+
+                    <select
+                        id="sequenceType"
+                        class="input"
+                    >
+
+                        <option value="ap">
+                            Arithmetic Progression
+                        </option>
+
+                        <option value="gp">
+                            Geometric Progression
+                        </option>
+
+                    </select>
+
+
+                    <input
+                        id="sequenceFirst"
+                        class="input"
+                        placeholder="First term"
+                    >
+
+
+                    <input
+                        id="sequenceDifference"
+                        class="input"
+                        placeholder="Difference / ratio"
+                    >
+
+
+                    <input
+                        id="sequenceN"
+                        class="input"
+                        placeholder="n"
+                    >
+
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateSequence()"
+                    >
+                        Calculate
+                    </button>
+
+
+                    <div
+                        id="sequenceResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Number Theory
+                    </h3>
+
+                    <input
+                        id="numberTheoryInput"
+                        class="input"
+                        placeholder="Enter whole number"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="numberTheory()"
+                    >
+                        Analyze
+                    </button>
+
+                    <div
+                        id="numberTheoryResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Matrix
+                    </h3>
+
+                    <textarea
+                        id="matrixInput"
+                        class="textarea"
+                        placeholder="1,2;3,4"
+                    ></textarea>
+
+                    <select
+                        id="matrixOperation"
+                        class="input"
+                    >
+
+                        <option value="det">
+                            Determinant
+                        </option>
+
+                        <option value="inv">
+                            Inverse
+                        </option>
+
+                        <option value="transpose">
+                            Transpose
+                        </option>
+
+                        <option value="rank">
+                            Rank
+                        </option>
+
+                        <option value="trace">
+                            Trace
+                        </option>
+
+                    </select>
+
+                    <button
+                        class="primary-button"
+                        onclick="matrixCalculate()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="matrixResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Calculus
+                    </h3>
+
+                    <input
+                        id="calculusFunction"
+                        class="input"
+                        placeholder="Example: x^3 + 2*x"
+                    >
+
+                    <input
+                        id="calculusPoint"
+                        class="input"
+                        placeholder="Point for derivative"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateDerivative()"
+                    >
+                        Derivative
+                    </button>
+
+                    <button
+                        class="secondary-button wide-button"
+                        onclick="calculateIntegral()"
+                    >
+                        Integral
+                    </button>
+
+                    <div
+                        id="calculusResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Combinations / Permutations
+                    </h3>
+
+                    <input
+                        id="nValue"
+                        class="input"
+                        placeholder="n"
+                    >
+
+                    <input
+                        id="rValue"
+                        class="input"
+                        placeholder="r"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateNCRNPR()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="ncrResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             STATISTICS
+        ====================================== -->
+
+        <section
+            id="statisticsModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    STATISTICS & PROBABILITY
+                </span>
+
+                <h2>
+                    Statistics Lab
+                </h2>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card wide-card">
+
+                    <h3>
+                        Descriptive Statistics
+                    </h3>
+
+                    <textarea
+                        id="statisticsData"
+                        class="textarea"
+                        placeholder="10, 20, 25, 30, 40, 50"
+                    ></textarea>
+
+                    <button
+                        class="primary-button"
+                        onclick="descriptiveStatistics()"
+                    >
+                        Calculate Everything
+                    </button>
+
+                    <div
+                        id="statisticsResult"
+                        class="statistics-table"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Z-Score
+                    </h3>
+
+                    <input
+                        id="zX"
+                        class="input"
+                        placeholder="Value X"
+                    >
+
+                    <input
+                        id="zMean"
+                        class="input"
+                        placeholder="Mean"
+                    >
+
+                    <input
+                        id="zSD"
+                        class="input"
+                        placeholder="Standard deviation"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateZScore()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="zResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Probability
+                    </h3>
+
+                    <input
+                        id="probabilityA"
+                        class="input"
+                        placeholder="P(A)"
+                    >
+
+                    <input
+                        id="probabilityB"
+                        class="input"
+                        placeholder="P(B)"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="probabilityCalculations()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="probabilityResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Normal Distribution
+                    </h3>
+
+                    <input
+                        id="normalX"
+                        class="input"
+                        placeholder="x"
+                    >
+
+                    <input
+                        id="normalMean"
+                        class="input"
+                        placeholder="Mean"
+                    >
+
+                    <input
+                        id="normalSD"
+                        class="input"
+                        placeholder="Standard deviation"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="normalDistribution()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="normalResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Regression
+                    </h3>
+
+                    <input
+                        id="regressionX"
+                        class="input"
+                        placeholder="X values: 1,2,3,4"
+                    >
+
+                    <input
+                        id="regressionY"
+                        class="input"
+                        placeholder="Y values: 2,4,5,8"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="linearRegression()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="regressionResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PHYSICS
+        ====================================== -->
+
+        <section
+            id="physicsModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    PHYSICS
+                </span>
+
+                <h2>
+                    Physics Calculator
+                </h2>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Force
+                    </h3>
+
+                    <input
+                        id="forceMass"
+                        class="input"
+                        placeholder="Mass (kg)"
+                    >
+
+                    <input
+                        id="forceAcceleration"
+                        class="input"
+                        placeholder="Acceleration (m/s²)"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="physicsForce()"
+                    >
+                        Calculate F = ma
+                    </button>
+
+                    <div
+                        id="forceResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Kinetic Energy
+                    </h3>
+
+                    <input
+                        id="kineticMass"
+                        class="input"
+                        placeholder="Mass (kg)"
+                    >
+
+                    <input
+                        id="kineticVelocity"
+                        class="input"
+                        placeholder="Velocity (m/s)"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="kineticEnergy()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="kineticResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Potential Energy
+                    </h3>
+
+                    <input
+                        id="potentialMass"
+                        class="input"
+                        placeholder="Mass (kg)"
+                    >
+
+                    <input
+                        id="potentialHeight"
+                        class="input"
+                        placeholder="Height (m)"
+                    >
+
+                    <input
+                        id="potentialGravity"
+                        class="input"
+                        value="9.80665"
+                        placeholder="g"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="potentialEnergy()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="potentialResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Ohm's Law
+                    </h3>
+
+                    <input
+                        id="ohmVoltage"
+                        class="input"
+                        placeholder="Voltage"
+                    >
+
+                    <input
+                        id="ohmCurrent"
+                        class="input"
+                        placeholder="Current"
+                    >
+
+                    <input
+                        id="ohmResistance"
+                        class="input"
+                        placeholder="Resistance"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="ohmsLaw()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="ohmResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Power
+                    </h3>
+
+                    <input
+                        id="powerVoltage"
+                        class="input"
+                        placeholder="Voltage"
+                    >
+
+                    <input
+                        id="powerCurrent"
+                        class="input"
+                        placeholder="Current"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="electricalPower()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="powerResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Ideal Gas Law
+                    </h3>
+
+                    <input
+                        id="gasN"
+                        class="input"
+                        placeholder="Moles"
+                    >
+
+                    <input
+                        id="gasR"
+                        class="input"
+                        value="8.314462618"
+                        placeholder="R"
+                    >
+
+                    <input
+                        id="gasT"
+                        class="input"
+                        placeholder="Temperature (K)"
+                    >
+
+                    <input
+                        id="gasV"
+                        class="input"
+                        placeholder="Volume (m³)"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="idealGasLaw()"
+                    >
+                        Calculate Pressure
+                    </button>
+
+                    <div
+                        id="gasResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Projectile Motion
+                    </h3>
+
+                    <input
+                        id="projectileVelocity"
+                        class="input"
+                        placeholder="Initial velocity"
+                    >
+
+                    <input
+                        id="projectileAngle"
+                        class="input"
+                        placeholder="Angle"
+                    >
+
+                    <input
+                        id="projectileGravity"
+                        class="input"
+                        value="9.80665"
+                        placeholder="Gravity"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="projectileMotion()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="projectileResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        E = mc²
+                    </h3>
+
+                    <input
+                        id="massRelativity"
+                        class="input"
+                        placeholder="Mass (kg)"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="massEnergy()"
+                    >
+                        Calculate Energy
+                    </button>
+
+                    <div
+                        id="massEnergyResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CHEMISTRY
+        ====================================== -->
+
+        <section
+            id="chemistryModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    CHEMISTRY
+                </span>
+
+                <h2>
+                    Chemistry Calculator
+                </h2>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Moles
+                    </h3>
+
+                    <input
+                        id="chemMass"
+                        class="input"
+                        placeholder="Mass (g)"
+                    >
+
+                    <input
+                        id="chemMolarMass"
+                        class="input"
+                        placeholder="Molar mass (g/mol)"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateMoles()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="molesResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Molarity
+                    </h3>
+
+                    <input
+                        id="molarityMoles"
+                        class="input"
+                        placeholder="Moles"
+                    >
+
+                    <input
+                        id="molarityVolume"
+                        class="input"
+                        placeholder="Volume (L)"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateMolarity()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="molarityResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Dilution
+                    </h3>
+
+                    <input
+                        id="dilutionC1"
+                        class="input"
+                        placeholder="C1"
+                    >
+
+                    <input
+                        id="dilutionV1"
+                        class="input"
+                        placeholder="V1"
+                    >
+
+                    <input
+                        id="dilutionC2"
+                        class="input"
+                        placeholder="C2"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateDilution()"
+                    >
+                        Find V2
+                    </button>
+
+                    <div
+                        id="dilutionResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        pH
+                    </h3>
+
+                    <input
+                        id="phConcentration"
+                        class="input"
+                        placeholder="[H+] concentration"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculatePH()"
+                    >
+                        Calculate pH
+                    </button>
+
+                    <div
+                        id="phResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Ideal Gas
+                    </h3>
+
+                    <input
+                        id="chemGasN"
+                        class="input"
+                        placeholder="Moles"
+                    >
+
+                    <input
+                        id="chemGasT"
+                        class="input"
+                        placeholder="Temperature K"
+                    >
+
+                    <input
+                        id="chemGasV"
+                        class="input"
+                        placeholder="Volume L"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="chemGasPressure()"
+                    >
+                        Pressure
+                    </button>
+
+                    <div
+                        id="chemGasResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Radioactive Decay
+                    </h3>
+
+                    <input
+                        id="decayInitial"
+                        class="input"
+                        placeholder="Initial quantity"
+                    >
+
+                    <input
+                        id="decayHalfLife"
+                        class="input"
+                        placeholder="Half-life"
+                    >
+
+                    <input
+                        id="decayTime"
+                        class="input"
+                        placeholder="Elapsed time"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="radioactiveDecay()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="decayResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             FINANCE
+        ====================================== -->
+
+        <section
+            id="financeModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    FINANCE
+                </span>
+
+                <h2>
+                    Finance Calculator
+                </h2>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        EMI
+                    </h3>
+
+                    <input
+                        id="financePrincipal"
+                        class="input"
+                        placeholder="Loan amount"
+                    >
+
+                    <input
+                        id="financeRate"
+                        class="input"
+                        placeholder="Annual rate %"
+                    >
+
+                    <input
+                        id="financeTenure"
+                        class="input"
+                        placeholder="Years"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="financeEMI()"
+                    >
+                        Calculate EMI
+                    </button>
+
+                    <div
+                        id="financeEMIResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        SIP
+                    </h3>
+
+                    <input
+                        id="sipMonthly"
+                        class="input"
+                        placeholder="Monthly investment"
+                    >
+
+                    <input
+                        id="sipRate"
+                        class="input"
+                        placeholder="Expected return %"
+                    >
+
+                    <input
+                        id="sipYears"
+                        class="input"
+                        placeholder="Years"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="financeSIP()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="sipResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Compound Interest
+                    </h3>
+
+                    <input
+                        id="ciPrincipal"
+                        class="input"
+                        placeholder="Principal"
+                    >
+
+                    <input
+                        id="ciRate"
+                        class="input"
+                        placeholder="Rate %"
+                    >
+
+                    <input
+                        id="ciYears"
+                        class="input"
+                        placeholder="Years"
+                    >
+
+                    <input
+                        id="ciFrequency"
+                        class="input"
+                        value="12"
+                        placeholder="Times per year"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="compoundInterest()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="ciResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        CAGR
+                    </h3>
+
+                    <input
+                        id="cagrStart"
+                        class="input"
+                        placeholder="Starting value"
+                    >
+
+                    <input
+                        id="cagrEnd"
+                        class="input"
+                        placeholder="Ending value"
+                    >
+
+                    <input
+                        id="cagrYears"
+                        class="input"
+                        placeholder="Years"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateCAGR()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="cagrResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        NPV
+                    </h3>
+
+                    <input
+                        id="npvRate"
+                        class="input"
+                        placeholder="Discount rate %"
+                    >
+
+                    <input
+                        id="npvFlows"
+                        class="input"
+                        placeholder="-100000,30000,40000,50000"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateNPV()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="npvResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        ROI
+                    </h3>
+
+                    <input
+                        id="roiGain"
+                        class="input"
+                        placeholder="Final value"
+                    >
+
+                    <input
+                        id="roiCost"
+                        class="input"
+                        placeholder="Initial cost"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateROI()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="roiResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card wide-card">
+
+                    <h3>
+                        Corporate Finance
+                    </h3>
+
+                    <div class="four-inputs">
+
+                        <input
+                            id="corpRevenue"
+                            class="input"
+                            placeholder="Revenue"
+                        >
+
+                        <input
+                            id="corpCOGS"
+                            class="input"
+                            placeholder="COGS"
+                        >
+
+                        <input
+                            id="corpOpex"
+                            class="input"
+                            placeholder="Operating expenses"
+                        >
+
+                        <input
+                            id="corpDA"
+                            class="input"
+                            placeholder="Depreciation"
+                        >
+
+                        <input
+                            id="corpAmortization"
+                            class="input"
+                            placeholder="Amortization"
+                        >
+
+                        <input
+                            id="corpInterest"
+                            class="input"
+                            placeholder="Interest"
+                        >
+
+                        <input
+                            id="corpTaxRate"
+                            class="input"
+                            placeholder="Tax rate %"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        onclick="corporateFinance()"
+                    >
+                        Calculate Financial Metrics
+                    </button>
+
+
+                    <div
+                        id="corporateResult"
+                        class="financial-results"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Break-Even
+                    </h3>
+
+                    <input
+                        id="breakFixed"
+                        class="input"
+                        placeholder="Fixed cost"
+                    >
+
+                    <input
+                        id="breakPrice"
+                        class="input"
+                        placeholder="Price per unit"
+                    >
+
+                    <input
+                        id="breakVariable"
+                        class="input"
+                        placeholder="Variable cost/unit"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="breakEven()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="breakEvenResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        WACC
+                    </h3>
+
+                    <input
+                        id="waccEquity"
+                        class="input"
+                        placeholder="Equity"
+                    >
+
+                    <input
+                        id="waccDebt"
+                        class="input"
+                        placeholder="Debt"
+                    >
+
+                    <input
+                        id="waccCostEquity"
+                        class="input"
+                        placeholder="Cost of equity %"
+                    >
+
+                    <input
+                        id="waccCostDebt"
+                        class="input"
+                        placeholder="Cost of debt %"
+                    >
+
+                    <input
+                        id="waccTax"
+                        class="input"
+                        placeholder="Tax rate %"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateWACC()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="waccResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        CAPM
+                    </h3>
+
+                    <input
+                        id="capmRiskFree"
+                        class="input"
+                        placeholder="Risk-free rate %"
+                    >
+
+                    <input
+                        id="capmBeta"
+                        class="input"
+                        placeholder="Beta"
+                    >
+
+                    <input
+                        id="capmMarket"
+                        class="input"
+                        placeholder="Market return %"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateCAPM()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="capmResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             BUSINESS
+        ====================================== -->
+
+        <section
+            id="businessModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    BUSINESS
+                </span>
+
+                <h2>
+                    Business Calculator
+                </h2>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        CAC
+                    </h3>
+
+                    <input
+                        id="cacMarketing"
+                        class="input"
+                        placeholder="Marketing spend"
+                    >
+
+                    <input
+                        id="cacCustomers"
+                        class="input"
+                        placeholder="New customers"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateCAC()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="cacResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        LTV
+                    </h3>
+
+                    <input
+                        id="ltvARPU"
+                        class="input"
+                        placeholder="Average revenue/customer"
+                    >
+
+                    <input
+                        id="ltvMargin"
+                        class="input"
+                        placeholder="Gross margin %"
+                    >
+
+                    <input
+                        id="ltvLifetime"
+                        class="input"
+                        placeholder="Customer lifetime"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateLTV()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="ltvResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        LTV : CAC
+                    </h3>
+
+                    <input
+                        id="ltvValue"
+                        class="input"
+                        placeholder="LTV"
+                    >
+
+                    <input
+                        id="cacValue"
+                        class="input"
+                        placeholder="CAC"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateLTVCAC()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="ltvCacResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        SaaS Metrics
+                    </h3>
+
+                    <input
+                        id="saasMRR"
+                        class="input"
+                        placeholder="MRR"
+                    >
+
+                    <input
+                        id="saasChurn"
+                        class="input"
+                        placeholder="Monthly churn %"
+                    >
+
+                    <input
+                        id="saasCustomers"
+                        class="input"
+                        placeholder="Customers"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="saasMetrics()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="saasResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Marketing Metrics
+                    </h3>
+
+                    <input
+                        id="marketingClicks"
+                        class="input"
+                        placeholder="Clicks"
+                    >
+
+                    <input
+                        id="marketingImpressions"
+                        class="input"
+                        placeholder="Impressions"
+                    >
+
+                    <input
+                        id="marketingSpend"
+                        class="input"
+                        placeholder="Spend"
+                    >
+
+                    <input
+                        id="marketingConversions"
+                        class="input"
+                        placeholder="Conversions"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="marketingMetrics()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="marketingResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Project Management
+                    </h3>
+
+                    <input
+                        id="pmEV"
+                        class="input"
+                        placeholder="Earned Value"
+                    >
+
+                    <input
+                        id="pmPV"
+                        class="input"
+                        placeholder="Planned Value"
+                    >
+
+                    <input
+                        id="pmAC"
+                        class="input"
+                        placeholder="Actual Cost"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="projectMetrics()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="projectResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ENGINEERING
+        ====================================== -->
+
+        <section
+            id="engineeringModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    ENGINEERING
+                </span>
+
+                <h2>
+                    Engineering Calculator
+                </h2>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Stress
+                    </h3>
+
+                    <input
+                        id="stressForce"
+                        class="input"
+                        placeholder="Force (N)"
+                    >
+
+                    <input
+                        id="stressArea"
+                        class="input"
+                        placeholder="Area (m²)"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="engineeringStress()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="stressResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Strain
+                    </h3>
+
+                    <input
+                        id="strainChange"
+                        class="input"
+                        placeholder="Change in length"
+                    >
+
+                    <input
+                        id="strainOriginal"
+                        class="input"
+                        placeholder="Original length"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="engineeringStrain()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="strainResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Young's Modulus
+                    </h3>
+
+                    <input
+                        id="youngStress"
+                        class="input"
+                        placeholder="Stress"
+                    >
+
+                    <input
+                        id="youngStrain"
+                        class="input"
+                        placeholder="Strain"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="youngModulus()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="youngResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Gear Ratio
+                    </h3>
+
+                    <input
+                        id="gearInput"
+                        class="input"
+                        placeholder="Driven teeth"
+                    >
+
+                    <input
+                        id="gearOutput"
+                        class="input"
+                        placeholder="Driver teeth"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="gearRatio()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="gearResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Three Phase Power
+                    </h3>
+
+                    <input
+                        id="threeVoltage"
+                        class="input"
+                        placeholder="Voltage"
+                    >
+
+                    <input
+                        id="threeCurrent"
+                        class="input"
+                        placeholder="Current"
+                    >
+
+                    <input
+                        id="threePF"
+                        class="input"
+                        value="0.8"
+                        placeholder="Power factor"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="threePhasePower()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="threePhaseResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Reynolds Number
+                    </h3>
+
+                    <input
+                        id="reynoldsDensity"
+                        class="input"
+                        placeholder="Density"
+                    >
+
+                    <input
+                        id="reynoldsVelocity"
+                        class="input"
+                        placeholder="Velocity"
+                    >
+
+                    <input
+                        id="reynoldsLength"
+                        class="input"
+                        placeholder="Characteristic length"
+                    >
+
+                    <input
+                        id="reynoldsViscosity"
+                        class="input"
+                        placeholder="Dynamic viscosity"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="reynoldsNumber()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="reynoldsResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PROGRAMMER
+        ====================================== -->
+
+        <section
+            id="programmerModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    COMPUTER SCIENCE
+                </span>
+
+                <h2>
+                    Programmer Calculator
+                </h2>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card wide-card">
+
+                    <input
+                        id="programmerValue"
+                        class="input"
+                        placeholder="Enter number"
+                    >
+
+
+                    <div class="button-grid">
+
+                        <button
+                            class="primary-button"
+                            onclick="programmerConvert(2)"
+                        >
+                            Binary
+                        </button>
+
+                        <button
+                            class="primary-button"
+                            onclick="programmerConvert(8)"
+                        >
+                            Octal
+                        </button>
+
+                        <button
+                            class="primary-button"
+                            onclick="programmerConvert(10)"
+                        >
+                            Decimal
+                        </button>
+
+                        <button
+                            class="primary-button"
+                            onclick="programmerConvert(16)"
+                        >
+                            Hexadecimal
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="programmerResult"
+                        class="programmer-results"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Bitwise
+                    </h3>
+
+                    <input
+                        id="bitA"
+                        class="input"
+                        placeholder="A"
+                    >
+
+                    <input
+                        id="bitB"
+                        class="input"
+                        placeholder="B"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="bitwiseOperations()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="bitwiseResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        IPv4 Subnet
+                    </h3>
+
+                    <input
+                        id="ipAddress"
+                        class="input"
+                        placeholder="192.168.1.10"
+                    >
+
+                    <input
+                        id="cidr"
+                        class="input"
+                        placeholder="24"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateSubnet()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="subnetResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CONVERTER
+        ====================================== -->
+
+        <section
+            id="converterModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    UNIT CONVERTER
+                </span>
+
+                <h2>
+                    Universal Unit Converter
+                </h2>
+
+            </div>
+
+
+            <div class="converter-card">
+
+                <select
+                    id="converterCategory"
+                    class="input"
+                    onchange="loadConverterUnits()"
+                >
+
+                    <option value="length">
+                        Length
+                    </option>
+
+                    <option value="area">
+                        Area
+                    </option>
+
+                    <option value="volume">
+                        Volume
+                    </option>
+
+                    <option value="mass">
+                        Mass
+                    </option>
+
+                    <option value="temperature">
+                        Temperature
+                    </option>
+
+                    <option value="time">
+                        Time
+                    </option>
+
+                    <option value="speed">
+                        Speed
+                    </option>
+
+                    <option value="pressure">
+                        Pressure
+                    </option>
+
+                    <option value="energy">
+                        Energy
+                    </option>
+
+                    <option value="power">
+                        Power
+                    </option>
+
+                    <option value="force">
+                        Force
+                    </option>
+
+                    <option value="data">
+                        Data
+                    </option>
+
+                    <option value="angle">
+                        Angle
+                    </option>
+
+                    <option value="frequency">
+                        Frequency
+                    </option>
+
+                </select>
+
+
+                <div class="converter-row">
+
+                    <input
+                        id="converterValue"
+                        class="input"
+                        type="number"
+                        placeholder="Value"
+                        oninput="convertUnits()"
+                    >
+
+
+                    <select
+                        id="converterFrom"
+                        class="input"
+                        onchange="convertUnits()"
+                    ></select>
+
+
+                    <select
+                        id="converterTo"
+                        class="input"
+                        onchange="convertUnits()"
+                    ></select>
+
+                </div>
+
+
+                <div
+                    id="converterResult"
+                    class="big-result"
+                >
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             DATE TIME
+        ====================================== -->
+
+        <section
+            id="datetimeModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    DATE & TIME
+                </span>
+
+                <h2>
+                    Date & Time Calculator
+                </h2>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Date Difference
+                    </h3>
+
+                    <input
+                        id="dateStart"
+                        class="input"
+                        type="date"
+                    >
+
+                    <input
+                        id="dateEnd"
+                        class="input"
+                        type="date"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="dateDifference()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="dateDifferenceResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Age Calculator
+                    </h3>
+
+                    <input
+                        id="birthDate"
+                        class="input"
+                        type="date"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="calculateAge()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="ageResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Add Days
+                    </h3>
+
+                    <input
+                        id="dateBase"
+                        class="input"
+                        type="date"
+                    >
+
+                    <input
+                        id="dateDays"
+                        class="input"
+                        placeholder="Number of days"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="addDaysToDate()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="addDaysResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             DATA / ML
+        ====================================== -->
+
+        <section
+            id="mlModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    DATA SCIENCE / MACHINE LEARNING
+                </span>
+
+                <h2>
+                    ML Metrics
+                </h2>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Classification Metrics
+                    </h3>
+
+                    <input
+                        id="mlTP"
+                        class="input"
+                        placeholder="True Positive"
+                    >
+
+                    <input
+                        id="mlTN"
+                        class="input"
+                        placeholder="True Negative"
+                    >
+
+                    <input
+                        id="mlFP"
+                        class="input"
+                        placeholder="False Positive"
+                    >
+
+                    <input
+                        id="mlFN"
+                        class="input"
+                        placeholder="False Negative"
+                    >
+
+                    <button
+                        class="primary-button"
+                       onclick="runClassificationMetrics()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="mlResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Regression Metrics
+                    </h3>
+
+                    <input
+                        id="actualValues"
+                        class="input"
+                        placeholder="Actual: 10,20,30"
+                    >
+
+                    <input
+                        id="predictedValues"
+                        class="input"
+                        placeholder="Predicted: 12,18,29"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="regressionMetrics()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="regressionMetricsResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+
+                <div class="tool-card">
+
+                    <h3>
+                        Entropy & Gini
+                    </h3>
+
+                    <input
+                        id="classProbabilities"
+                        class="input"
+                        placeholder="0.5,0.3,0.2"
+                    >
+
+                    <button
+                        class="primary-button"
+                        onclick="entropyGini()"
+                    >
+                        Calculate
+                    </button>
+
+                    <div
+                        id="entropyResult"
+                        class="result"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             WORKSPACE
+        ====================================== -->
+
+        <section
+            id="workspaceModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    MULTI-CALCULATION WORKSPACE
+                </span>
+
+                <h2>
+                    Calculation Workspace
+                </h2>
+
+                <p>
+                    Create multiple calculations and
+                    reuse their results.
+                </p>
+
+            </div>
+
+
+            <div class="workspace-card">
+
+                <textarea
+                    id="workspaceInput"
+                    class="workspace-editor"
+                    placeholder="Example:
+
+Revenue = 500000
+COGS = 200000
+OPEX = 100000
+GrossProfit = Revenue - COGS
+EBITDA = GrossProfit - OPEX
+Margin = EBITDA / Revenue * 100"
+                ></textarea>
+
+
+                <button
+                    class="primary-button"
+                    onclick="runWorkspace()"
+                >
+                    Run Workspace
+                </button>
+
+
+                <button
+                    class="secondary-button"
+                    onclick="saveWorkspace()"
+                >
+                    Save Workspace
+                </button>
+
+
+                <div
+                    id="workspaceResult"
+                    class="workspace-result"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             FORMULAS
+        ====================================== -->
+
+        <section
+            id="formulasModule"
+            class="module"
+        >
+
+            <div class="module-header">
+
+                <span class="module-label">
+                    FORMULA ENCYCLOPEDIA
+                </span>
+
+                <h2>
+                    Formula Library
+                </h2>
+
+            </div>
+
+
+            <input
+                id="formulaSearch"
+                class="input formula-search"
+                placeholder="Search formulas..."
+                oninput="searchFormulas()"
+            >
+
+
+            <div
+                id="formulaList"
+                class="formula-list"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+
+</div>
+
+
 <script src="js/parser.js"></script>
+<script src="script.js"></script>
 
 </body>
 
